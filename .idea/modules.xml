@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ModuleRegAuth.iml" filepath="$PROJECT_DIR$/ModuleRegAuth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/User-Registry-JDBC.iml" filepath="$PROJECT_DIR$/User-Registry-JDBC.iml" />
     </modules>
   </component>
 </project>
