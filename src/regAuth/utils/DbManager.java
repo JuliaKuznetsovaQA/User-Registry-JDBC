@@ -1,4 +1,4 @@
-package regAuth;
+package regAuth.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

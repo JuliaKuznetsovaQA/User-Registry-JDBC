@@ -1,5 +1,7 @@
 package regAuth;
 
+import regAuth.model.User;
+
 import java.util.LinkedList;
 
 public class AppRegAuth {

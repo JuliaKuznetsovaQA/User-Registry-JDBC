@@ -1,4 +1,4 @@
-package regAuth;
+package regAuth.model;
 
 public class User {
     private final String login;

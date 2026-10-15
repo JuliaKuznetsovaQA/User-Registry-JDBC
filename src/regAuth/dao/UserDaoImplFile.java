@@ -1,12 +1,13 @@
-package regAuth;
+package regAuth.dao;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import regAuth.model.User;
 
 import java.io.*;
 import java.util.LinkedList;
 
-public class UserDaoImplFile implements UserDao{
+public class UserDaoImplFile implements UserDao {
     private final String fileName = "user.json";
     private static LinkedList<User> users = new LinkedList<>();
     Gson gson = new Gson();

@@ -1,4 +1,6 @@
-package regAuth;
+package regAuth.factory;
+
+import regAuth.dao.UserDao;
 
 public interface DaoFactory {
 

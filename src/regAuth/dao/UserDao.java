@@ -1,4 +1,6 @@
-package regAuth;
+package regAuth.dao;
+
+import regAuth.model.User;
 
 import java.util.LinkedList;
 

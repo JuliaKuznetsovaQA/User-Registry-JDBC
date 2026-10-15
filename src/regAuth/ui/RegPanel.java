@@ -1,4 +1,7 @@
-package regAuth;
+package regAuth.ui;
+
+import regAuth.model.User;
+import regAuth.dao.UserDaoImplBD;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +56,7 @@ public class RegPanel extends JPanel {
 
         JButton regButton = new JButton("Зарегистрироваться");
         regButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        regButton.addActionListener(e -> performRegister());
+        regButton.addActionListener(_ -> performRegister());
         add(regButton);
         add(Box.createVerticalStrut(15));
 
@@ -64,7 +67,7 @@ public class RegPanel extends JPanel {
 
         JButton toAuthButton = new JButton("Назад к авторизации");
         toAuthButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        toAuthButton.addActionListener(e -> mainFrame.showScreen("AUTH"));
+        toAuthButton.addActionListener(_ -> mainFrame.showScreen(Screen.AUTH));
         add(toAuthButton);
     }
 

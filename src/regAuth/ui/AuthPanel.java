@@ -1,4 +1,7 @@
-package regAuth;
+package regAuth.ui;
+
+import regAuth.model.User;
+import regAuth.dao.UserDaoImplBD;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +44,7 @@ public class AuthPanel extends JPanel {
         add(Box.createVerticalStrut(20));
 
         loginButton = new JButton("Войти");
-        loginButton.addActionListener(e -> performAuth());
+        loginButton.addActionListener(_ -> performAuth());
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(loginButton);
         add(Box.createVerticalStrut(15));
@@ -54,7 +57,7 @@ public class AuthPanel extends JPanel {
 
         JButton toRegButton = new JButton("Нет аккаунта? Зарегистрироваться");
         toRegButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        toRegButton.addActionListener(e -> mainFrame.showScreen("REG"));
+        toRegButton.addActionListener(_ -> mainFrame.showScreen(Screen.REG));
         add(toRegButton);
 
     }
@@ -76,7 +79,8 @@ public class AuthPanel extends JPanel {
         if (user==null || !user.getPassword().equals(inputPassword)) {
             test.setText("Неверный логин или пароль!");
         } else {
-            test.setText("Добро пожаловать, " + inputLogin + "!");
+            mainFrame.setCurrentUser(inputLogin);
+            mainFrame.showScreen(Screen.LIST);
         }
     }
 
@@ -92,4 +96,7 @@ public class AuthPanel extends JPanel {
         }
     }
 
+    public String getCurrentLogin() {
+        return loginTextField.getText().trim();
+    }
 }

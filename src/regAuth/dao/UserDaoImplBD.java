@@ -1,9 +1,12 @@
-package regAuth;
+package regAuth.dao;
+
+import regAuth.model.User;
+import regAuth.utils.DbManager;
 
 import java.sql.*;
 import java.util.LinkedList;
 
-public class UserDaoImplBD implements UserDao{
+public class UserDaoImplBD implements UserDao {
 
     private Connection getConnection() {
         return DbManager.getInstance().getConnection();
