@@ -22,4 +22,8 @@ public class UserService {
         db.delete(login);
     }
 
+    public void updatePassword(String login, String newPassword) {
+        db.update(new User(login, newPassword));
+    }
+
 }

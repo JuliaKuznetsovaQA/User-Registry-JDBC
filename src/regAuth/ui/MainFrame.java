@@ -10,6 +10,16 @@ public class MainFrame extends JFrame {
     private RegPanel regPanel;
     private ListPanel listPanel;
     private String currentUser;
+    private String targetEditingUser;
+    private EditPanel editPanel;
+
+    public void setTargetEditingUser(String login) {
+        this.targetEditingUser = login;
+    }
+
+    public String getTargetEditingUser() {
+        return targetEditingUser;
+    }
 
     public void setCurrentUser(String user) {
         this.currentUser = user;
@@ -35,6 +45,9 @@ public class MainFrame extends JFrame {
         listPanel = new ListPanel(this);
         containerPanel.add(listPanel, Screen.LIST.name());
 
+        editPanel = new EditPanel(this);
+        containerPanel.add(editPanel, Screen.EDIT.name());
+
         getContentPane().add(containerPanel);
         cardLayout.show(containerPanel, Screen.AUTH.name());
 
@@ -46,15 +59,16 @@ public class MainFrame extends JFrame {
 
     public void showScreen(Screen screen) {
         authPanel.clearFields();
-        if (regPanel != null) {
-            regPanel.clearFields();
-        }
-        if (listPanel != null) {
-            listPanel.clearStatus();
-        }
+        if (regPanel != null) regPanel.clearFields();
+        if (listPanel != null) listPanel.clearStatus();
+        if (editPanel != null) editPanel.clearFields();
         if (screen == Screen.LIST) {
             assert listPanel != null;
             listPanel.refreshList();
+        }
+        if (screen == Screen.EDIT) {
+            assert editPanel != null;
+            editPanel.setupEditScreen();
         }
         cardLayout.show(containerPanel, screen.name());
     }

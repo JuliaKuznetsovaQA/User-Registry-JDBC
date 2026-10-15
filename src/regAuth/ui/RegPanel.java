@@ -6,6 +6,7 @@ import regAuth.dao.UserDaoImplBD;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("unused")
 public class RegPanel extends JPanel {
     private MainFrame mainFrame;
     private UserDaoImplBD db = new UserDaoImplBD();
@@ -56,7 +57,7 @@ public class RegPanel extends JPanel {
 
         JButton regButton = new JButton("Зарегистрироваться");
         regButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        regButton.addActionListener(_ -> performRegister());
+        regButton.addActionListener(e -> performRegister());
         add(regButton);
         add(Box.createVerticalStrut(15));
 
@@ -67,7 +68,7 @@ public class RegPanel extends JPanel {
 
         JButton toAuthButton = new JButton("Назад к авторизации");
         toAuthButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        toAuthButton.addActionListener(_ -> mainFrame.showScreen(Screen.AUTH));
+        toAuthButton.addActionListener(e -> mainFrame.showScreen(Screen.AUTH));
         add(toAuthButton);
     }
 

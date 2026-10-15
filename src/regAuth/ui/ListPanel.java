@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.LinkedList;
 
+@SuppressWarnings("unused")
 public class ListPanel extends JPanel {
     private MainFrame mainFrame;
     private UserService userService = new UserService();
@@ -45,6 +46,10 @@ public class ListPanel extends JPanel {
 
         JButton deleteButton = getDeleteButton();
         add(deleteButton);
+        add(Box.createVerticalStrut(10));
+
+        JButton editButton = getEditButton(mainFrame);
+        add(editButton);
         add(Box.createRigidArea(new Dimension(0, 15)));
 
         statusLabel = new JLabel(" ");
@@ -53,28 +58,34 @@ public class ListPanel extends JPanel {
         statusLabel.setMaximumSize(new Dimension(320, 25));
         statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(statusLabel);
-        add(Box.createRigidArea(new Dimension(0, 15)));
 
         JButton logoutButton = new JButton("Выход");
         logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        logoutButton.addActionListener(_ -> mainFrame.showScreen(Screen.AUTH));
+        logoutButton.addActionListener(e -> mainFrame.showScreen(Screen.AUTH));
         add(logoutButton);
         add(Box.createVerticalStrut(20));
+    }
+
+    private JButton getEditButton(MainFrame mainFrame) {
+        JButton editButton = new JButton("Изменить пароль");
+        editButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        editButton.addActionListener(e -> {
+            String selectedLogin = getSelectedLogin();
+            if (selectedLogin == null) return;
+            mainFrame.setTargetEditingUser(selectedLogin);
+            mainFrame.showScreen(Screen.EDIT);
+        });
+        return editButton;
     }
 
     private JButton getDeleteButton() {
         JButton deleteButton = new JButton("Удалить пользователя");
         deleteButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        deleteButton.addActionListener(_ -> {
-            int selectedRow = userTable.getSelectedRow();
-            if (selectedRow == -1) {
-                statusLabel.setText("Выберите пользователя для удаления");
-                statusLabel.setForeground(Color.RED);
-                return;
-            }
-
-            String selectedLogin = (String) tableModel.getValueAt(selectedRow, 0);
+        deleteButton.addActionListener(e -> {
+            String selectedLogin = getSelectedLogin();
+            if (selectedLogin == null) return;
 
             String currentLoggedInUser = mainFrame.getCurrentUser();
             if (selectedLogin.equals(currentLoggedInUser)) {
@@ -101,7 +112,6 @@ public class ListPanel extends JPanel {
                 statusLabel.setText("Удаление отменено.");
                 statusLabel.setForeground(Color.BLACK);
             }
-
         });
         return deleteButton;
     }
@@ -119,5 +129,15 @@ public class ListPanel extends JPanel {
         if (statusLabel != null) {
             statusLabel.setText(" ");
         }
+    }
+
+    private String getSelectedLogin() {
+        int selectedRow = userTable.getSelectedRow();
+        if (selectedRow == -1) {
+            statusLabel.setText("Пожалуйста, выберите пользователя в таблице");
+            statusLabel.setForeground(Color.RED);
+            return null;
+        }
+        return (String) tableModel.getValueAt(selectedRow, 0);
     }
 }

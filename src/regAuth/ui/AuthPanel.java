@@ -44,7 +44,7 @@ public class AuthPanel extends JPanel {
         add(Box.createVerticalStrut(20));
 
         loginButton = new JButton("Войти");
-        loginButton.addActionListener(_ -> performAuth());
+        loginButton.addActionListener(e -> performAuth());
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(loginButton);
         add(Box.createVerticalStrut(15));
@@ -57,7 +57,7 @@ public class AuthPanel extends JPanel {
 
         JButton toRegButton = new JButton("Нет аккаунта? Зарегистрироваться");
         toRegButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        toRegButton.addActionListener(_ -> mainFrame.showScreen(Screen.REG));
+        toRegButton.addActionListener(e -> mainFrame.showScreen(Screen.REG));
         add(toRegButton);
 
     }
