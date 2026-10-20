@@ -2,6 +2,7 @@ package regAuth.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import tictactoe.ui.TicTacToePanel;
 
 public class MainFrame extends JFrame {
     private CardLayout cardLayout;
@@ -12,6 +13,7 @@ public class MainFrame extends JFrame {
     private String currentUser;
     private String targetEditingUser;
     private EditPanel editPanel;
+    private TicTacToePanel ticTacToePanel;
 
     public void setTargetEditingUser(String login) {
         this.targetEditingUser = login;
@@ -48,6 +50,9 @@ public class MainFrame extends JFrame {
         editPanel = new EditPanel(this);
         containerPanel.add(editPanel, Screen.EDIT.name());
 
+        ticTacToePanel = new TicTacToePanel(this);
+        containerPanel.add(ticTacToePanel, Screen.TIC_TAC_TOE.name());
+
         getContentPane().add(containerPanel);
         cardLayout.show(containerPanel, Screen.AUTH.name());
 
@@ -62,6 +67,18 @@ public class MainFrame extends JFrame {
         if (regPanel != null) regPanel.clearFields();
         if (listPanel != null) listPanel.clearStatus();
         if (editPanel != null) editPanel.clearFields();
+        if (editPanel != null) editPanel.clearFields();
+        if (ticTacToePanel != null) ticTacToePanel.clearFields();
+
+        if (screen == Screen.TIC_TAC_TOE) {
+            setTitle("Крестики-Нолики");
+            ticTacToePanel.resetGame();
+        } else if (screen == Screen.LIST) {
+            setTitle("Список пользователей");
+        } else {
+            setTitle("Авторизация / Регистрация");
+        }
+        
         if (screen == Screen.LIST) {
             assert listPanel != null;
             listPanel.refreshList();
@@ -69,6 +86,9 @@ public class MainFrame extends JFrame {
         if (screen == Screen.EDIT) {
             assert editPanel != null;
             editPanel.setupEditScreen();
+        }
+        if (screen == Screen.TIC_TAC_TOE) {
+            ticTacToePanel.resetGame();
         }
         cardLayout.show(containerPanel, screen.name());
     }
