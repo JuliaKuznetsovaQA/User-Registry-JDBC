@@ -4,5 +4,6 @@ public enum Screen {
     AUTH,
     REG,
     LIST,
-    EDIT
+    EDIT,
+    TIC_TAC_TOE
 }

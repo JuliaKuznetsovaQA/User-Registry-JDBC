@@ -52,6 +52,11 @@ public class ListPanel extends JPanel {
         add(editButton);
         add(Box.createRigidArea(new Dimension(0, 15)));
 
+        JButton playButton = new JButton("Играть в Крестики-Нолики");
+        playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        playButton.addActionListener(e -> mainFrame.showScreen(Screen.TIC_TAC_TOE));
+        add(playButton);
+
         statusLabel = new JLabel(" ");
         statusLabel.setMinimumSize(new Dimension(320, 25));
         statusLabel.setPreferredSize(new Dimension(320, 25));
